@@ -75,10 +75,16 @@ def intersecao(reta1, reta2):
     beq = np.array([b1, b2], float)  # 2, - Beq posição inicial
     # Se forem paralelas/singulares, retorne None
     # Dica: use det ou tente resolver e capture exceção
+    # usar: np.linalg.det() - para saber se as retas são paralelas
+    # usar: np.linalg.solve() - me da as coordenadas x e y do cruzamento
     # TODO:
-    
-    
+    dete = np.linalg.det(Aeq)
+    if np.abs(dete) < EPS: #abs é o valor absoluto e o EPS(épsilon) é o numero muito pequeno
+        return None
 
+    inter = np.linalg.solve(Aeq,beq)
+    return inter
+    
 
 #  3/3) Resolver PL 2D via pontos extremos
 def resolve_lp_2d(A, b, c):
