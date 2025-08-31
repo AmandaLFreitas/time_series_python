@@ -22,6 +22,12 @@ import sys
 ### obrigado por fazer o exercício sobre cabeçalhos, espero que tenha sido ilustrativo... 
 ### Qual a diferença de cabeçalho e DocString no python?
 
+"""
+Resposta: Normalmente o cabeçalho é somente uma descrição que contem o nome, data e versão
+do código sem nenhuma instrução direta, já o DocString é a instrução de como funciona o código.
+
+"""
+
 ###  abaixo segue desafio... 
 
 ## dica: pesquisa operacional...
@@ -33,21 +39,30 @@ EPS = 1e-9
 
 #  1/3) Modele A, b, c 
 # Forma padrão: A @ [x,y] <= b, com não-negatividade via -I @ [x,y] <= 0
-# Restrição 1: 2x +  y <= 100
-# Restrição 2:  x + 2y <= 80
-# Restrição 3:  x >= 0  ->  -x <= 0
-# Restrição 4:  y >= 0  ->  -y <= 0
+# Restrição 1: 2x +  y <= 100 -> 2 e 1 vão para A e o 100 para B
+# Restrição 2:  x + 2y <= 80 -> 1 e 2 vão para A e 80 para B
+# Restrição 3:  x >= 0  ->  -x <= 0 -> mesma coisa -> -1,0 <=0 -> -1,0 para A e 0 para B
+# Restrição 4:  y >= 0  ->  -y <= 0 -> mesma coisa -> 0,-1 <=0 -> 0,-1 para A e 0 para B
+
+#guarda os numeros que se multiplicam
 A = np.array([
-    # preencha aqui
+    [2,1], #2x +  y
+    [1,2], # x + 2y
+    [-1,0], # -x <= 0
+    [0,-1] # -y <= 0
 ], dtype=float)
 
+#guarda os limites
 b = np.array([
-    # preencha aqui
+    100,
+    80,
+    0,
+    0
 ], dtype=float)
 
 # Função objetivo: z = 3x + 5y
 c = np.array([
-    # preencha aqui
+    3,5
 ], dtype=float)
 
 
@@ -56,12 +71,13 @@ c = np.array([
 def intersecao(reta1, reta2):
     a1, b1 = reta1
     a2, b2 = reta2
-    Aeq = np.vstack([a1, a2])        # 2x2
-    beq = np.array([b1, b2], float)  # 2,
+    Aeq = np.vstack([a1, a2])        # 2x2 - Aeq é a direção - singular
+    beq = np.array([b1, b2], float)  # 2, - Beq posição inicial
     # Se forem paralelas/singulares, retorne None
     # Dica: use det ou tente resolver e capture exceção
     # TODO:
-    raise NotImplementedError
+    
+    
 
 
 #  3/3) Resolver PL 2D via pontos extremos
